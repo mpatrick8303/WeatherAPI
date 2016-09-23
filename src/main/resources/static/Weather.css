@@ -1,0 +1,108 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	background-image: url("http://cdn2.macworld.co.uk/cmsdata/slideshow/3606161/best-weather-apps-for-iphone_thumb800.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#title{
+	position:relative;
+}
+h1{
+	font-size: 8em;
+	color: white;
+	
+}
+
+#zipcodeEnter{
+	position:absolute;
+	top:5em;
+	left:85em;
+}
+
+#zipTitle{
+	font-size: 1.7em;
+	color:white;
+}
+
+#zipcode{
+	background-color: grey;
+	height: 3em;
+}
+
+#getWeth{
+	width: 10em;
+	height:3em;
+	font-weight: bold;
+}
+
+#details{
+	position: relative;
+}
+
+#location{
+	position: absolute;
+	top: 0;
+	width: 10em;
+}
+
+#locationTitle{
+	font-size: 1.5em;
+	color:orange;
+}
+
+#locationD{
+	font-size: 1.3em;
+	color: white;
+}
+
+#weather{
+	position: absolute;
+	left: 15em;
+	width: 25em;
+}
+
+#weather h4{
+	
+	
+	left: 10em;
+}
+
+#picture{
+	position: absolute;
+	left:7em;
+	top:1em;
+}
+
+#weatherSimp{
+	position: absolute;
+	width:10em;
+	
+}
+
+#weatherSimpTitle{
+	font-size: 1.5em;
+	color: orange;
+	left: 4em;
+}
+
+#weatherSimpD{
+	font-size: 1.3em;
+	color: white;
+}
+
+#weatherSimp2{
+	position: absolute;
+	left:10em;
+	top: 4.3em;
+	width:10em;
+	font-size: 1.3em;
+	color: white;
+}
+
+
+
+.hidden{
+	
+}
