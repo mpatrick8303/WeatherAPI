@@ -1,0 +1,181 @@
+<html ng-app="weatherAPI">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Weather</title>
+		
+		<link rel="stylesheet" type="text/css" href="Weather.css">
+		
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+		
+	</head>
+	<body ng-style="body" ng-controller="WeatherController as WC">
+		<section id="title">
+		<h1>The Weather App</h1>
+		</section>
+		
+		<section id=zipcodeEnter>
+			<form ng-submit="WC.getWeather()">
+				<label id="zipTitle">ZipCode: </label>
+				<input type="text" id="zipcode" placeholder="Please Enter A Zipcode" ng-model="WC.newZip">
+				<input id="getWeth" type="submit" value="Find The Weather"></input>
+			</form>
+		</section>
+		
+		<section id="details" class="hidden">
+			<section id="location">
+				<h4 id="locationTitle">Location</h4>
+				<div id="locationD">
+					<div>City: {{ WC.location.city }}</div><br>
+					<div>State: {{ WC.location.state }}</div><br>
+					<div>Zipcode: {{ WC.location.zipcode }}</div><br>
+				</div>
+			</section>
+		
+			<section id="weather">
+				<div id="weatherT">
+					<h4 id="weatherSimpTitle">Weather</h4>
+					<img id="picture" ng-src="{{WC.weather.wPic}}"></img>
+				</div>
+					<section id="weatherSimp">
+						
+						<div id="weatherSimpD">
+							<div>Temp(F): {{ WC.weather.tempf }}&#8457</div><br>
+							<div>Temp(C): {{ WC.weather.tempc }}&#8451</div><br>
+							<div>Relative Humidity: {{ WC.weather.relHumid }}%</div><br>
+						</div>
+				
+					</section>
+			
+					<section id="weatherSimp2">
+						<div id="weatherSimp2D">
+							<div>Feels Like(F): {{ WC.weather.feelLikef }}&#8457</div><br>
+							<div>Feels Like(C): {{ WC.weather.feelLikec }}&#8451</div><br>
+							<div>UV: {{ WC.weather.UV }}</div>
+						</div>
+					</section>
+					
+					<section>
+						<a href='#' ng-click="WC.showForecast()">Forecast</a>
+					</section>
+				
+				
+				</section>
+			</section>
+			
+			
+		</section>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+		
+		<script type="text/javascript">
+		
+			
+			
+		
+
+			angular.module("weatherAPI",[]).controller("WeatherController", function($http, $scope)
+			{
+			
+				
+				var self = this;
+				this.newZip = "";
+				
+				
+				this.getWeather = function()
+				{
+					$('#details').removeClass("hidden");
+					$http.get("weather/" + this.newZip).then(function(response) {
+
+						json = $.parseJSON(response.data[0]);
+						jsonF = $.parseJSON(response.data[1]);
+						self.getBackground(json);
+						self.getDisplay(json);
+						self.getDisplayForecast(jsonF)
+						
+					});
+
+				}
+				
+				this.getDisplay = function(json)
+				{
+					this.location ={
+							
+							city: json.current_observation.display_location.city,
+							state: json.current_observation.display_location.state_name,
+							zipcode: self.newZip
+						}
+				
+					this.weather ={
+						
+							tempf: json.current_observation.temp_f,
+							tempc: json.current_observation.temp_c,
+							relHumid: json.current_observation.wind_mph,
+				
+							feelLikef: json.current_observation.feelslike_f,
+							feelLikec: json.current_observation.feelslike_c,
+							UV: json.current_observation.UV,
+							
+							wPic: json.current_observation.icon_url
+							
+						}
+				}
+				
+				this.getDisplayForecast = function(jsonF)
+				{
+					console.log(jsonF)
+					console.log(jsonF.forecast.simpleforecast.forecastday)
+					
+					this.day1 = {
+						high: jsonF.forecast.simpleforecast.forcecastday[0].high.fahrenheit
+					}
+				}
+				
+				this.showForecast = function()
+				{
+					
+				}
+				
+				
+				this.getBackground = function(json)
+				{
+					var weather = json.current_observation.icon;
+					//var p = json.current_observation.icon_url;
+					//$('#picture').attr({src: json.current_observation.icon_url});
+					
+					console.log(weather)
+					
+					switch(weather)
+					{
+						case "clear":
+							$scope.body = {'background-image':'url(https://media.giphy.com/media/l41lXD4w2wQC8hWg0/giphy.gif)'};
+							break;
+						case "partlycloudy":
+							$scope.body= {'background-image':'url(https://lovelace-media.imgix.net/uploads/463/6ae0b430-0b04-0133-f4ae-0e18518aac2f.gif?)'};
+							break;
+						case "rain":
+							$scope.body = {'background-image':'url(https://media.giphy.com/media/AWJy0ZcCJmILe/giphy.gif)'};
+							break;
+						case "tstorms":
+							$scope.body = {'background-image':'url(https://s-media-cache-ak0.pinimg.com/originals/92/45/22/924522c9a00e45dec64690065f270654.gif)'};
+							break;
+						case "cloudy":
+							$scope.body = {'background-image':'url(https://media.giphy.com/media/3o7rc6sa2RvKo8K5EI/giphy.gif)'};
+							break;
+						case "snow":
+							$scope.body = {'background-image':'url(http://25.media.tumblr.com/8f8a1a48b69ae147d334edad25564096/tumblr_mvp1bqaBGt1swwqebo1_500.gif)'};
+							break;
+						case "hazy":
+							$scope.body = {'background-image':'url(https://66.media.tumblr.com/43a02d425f36e5a35becc5a39caa4bef/tumblr_nn86gouEZC1rz8mvdo1_500.gif)'};
+							break;
+					}
+					
+		
+				}
+				
+				
+				
+				
+			});
+
+		</script>
+	</body>
+</html>

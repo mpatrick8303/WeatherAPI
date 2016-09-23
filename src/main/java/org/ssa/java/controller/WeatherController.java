@@ -22,7 +22,7 @@ public class WeatherController
     @RequestMapping(value = {"","/"})
     public String home()
     {
-        return "Weather.html";
+        return "WeatherAng.html";
    
     }
     

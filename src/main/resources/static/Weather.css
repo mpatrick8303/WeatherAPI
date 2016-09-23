@@ -1,17 +1,22 @@
 @CHARSET "ISO-8859-1";
 
+
 body{
-	background-image: url("http://cdn2.macworld.co.uk/cmsdata/slideshow/3606161/best-weather-apps-for-iphone_thumb800.jpg");
+	background-image: url("http://www.netanimations.net/sun-clouds3.gif");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
+
+
 
 #title{
 	position:relative;
 }
 h1{
 	font-size: 8em;
-	color: white;
+	color: White;
+	-webkit-text-stroke: 1px Black;
 	
 }
 
@@ -22,8 +27,9 @@ h1{
 }
 
 #zipTitle{
-	font-size: 1.7em;
-	color:white;
+	font-size: 2.2em;
+	color: White;
+	-webkit-text-stroke: 1px Black;
 }
 
 #zipcode{
@@ -44,23 +50,26 @@ h1{
 #location{
 	position: absolute;
 	top: 0;
-	width: 10em;
+	width: 25em;
 }
 
 #locationTitle{
-	font-size: 1.5em;
-	color:orange;
+	font-size: 2em;
+	color: orange;
+	-webkit-text-stroke: 1px Black;
 }
 
 #locationD{
-	font-size: 1.3em;
-	color: white;
+	font-size: 2em;
+	color: White;
+	-webkit-text-stroke: .8px Black;
 }
 
 #weather{
 	position: absolute;
-	left: 15em;
-	width: 25em;
+	left: 20em;
+	width: 35em;
+	top: -1;
 }
 
 #weather h4{
@@ -77,32 +86,42 @@ h1{
 
 #weatherSimp{
 	position: absolute;
-	width:10em;
+	width:20em;
 	
 }
 
 #weatherSimpTitle{
-	font-size: 1.5em;
+	font-size: 2.2em;
 	color: orange;
+	-webkit-text-stroke: 1px Black;
 	left: 4em;
 }
 
 #weatherSimpD{
-	font-size: 1.3em;
-	color: white;
+	font-size: 2em;
+	color: White;
+	-webkit-text-stroke: .8px Black;
 }
 
 #weatherSimp2{
 	position: absolute;
 	left:10em;
 	top: 4.3em;
-	width:10em;
-	font-size: 1.3em;
-	color: white;
+	width:15em;
+	font-size: 2em;
+	color: White;
+	-webkit-text-stroke: .8px Black;
+}
+
+#weather a{
+	position: absolute;
+	left: 10em;
+	top: 2.2em;
+	font-size: 1.5em
 }
 
 
 
 .hidden{
-	
+	display:none;
 }
